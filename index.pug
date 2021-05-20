@@ -9,11 +9,24 @@ block yield
 
     
   script.
+    function getMobileOperatingSystem() { 
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera; 
+    
+      if ( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) ) { return 'iOS'; } 
+            
+      else if ( userAgent.match( /Android/i ) ) { return 'Android'; } 
+    
+      else { return 'unknown'; } 
+    } 
     $(document).ready(function(){
       var code = getParameterByName('code');
       if(typeof code != 'undefined' && code != '' && String(code).length>0 && code != null){
         $('span').text(code);
-        $('a').removeClass('disabled').attr('href', 'sms:1922?body=' + String(code));
+        var url = 'sms:1922?body=' + String(code);
+        if(getMobileOperatingSystem() == 'iOS'){
+          url = 'sms:1922&body=' + String(code);
+        }
+        $('a').removeClass('disabled').attr('href', url);
       }
     });
     function getParameterByName(name, url = window.location.href) {
