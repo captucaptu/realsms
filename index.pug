@@ -1,0 +1,25 @@
+extends ./_tpl.pug
+block yield
+
+  .wrap
+    h2 疾管家實聯制工具
+    p 您目前登記的場所代碼為：<span class="no"></span>
+      |<br>若此欄無代碼請勿送出
+    a.btn.disabled(href="sms:1922") 送出實聯制登計簡訊
+
+    
+  script.
+    $(document).ready(function(){
+      var code = getParameterByName('code');
+      if(typeof code != 'undefined' && code != '' && String(code).length>0 && code != null){
+        $('a').removeClass('disabled').attr('href', 'sms:1922?body=' + String(code));
+      }
+    });
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }

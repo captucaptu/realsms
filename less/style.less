@@ -1,0 +1,122 @@
+@import "mixin.less";
+@import "normalize.css";
+//@import "font-awesome.css";
+@import "color.less";
+//========================
+// default
+//========================
+body,html {
+	font-family: "PingFang TC", "Microsoft JhengHei", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+}
+
+input,
+textarea,
+select {
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	outline: 0;
+	margin: 0;
+	font-family: inherit;
+	.border-radius(0);
+	-webkit-appearance: none;
+}
+input:focus,
+textarea:focus,
+select:focus{
+    -webkit-appearance: none;
+}
+
+input[type="button"] {
+	cursor: pointer;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	outline: 0;
+	margin: 0;
+	font-family: inherit;
+}
+
+*:focus {
+	outline: 0;
+}
+
+.hide-text{
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	text-indent: 110%;
+}
+
+.hide-title{
+	display: block;
+	margin: 0;
+	white-space: nowrap;
+	width: 0;
+	height: 0;
+	position: absolute;
+	overflow: hidden;
+	text-indent: 2px;
+}
+
+
+
+//========================
+// module
+//========================
+
+.wrap{
+	max-width: 1440px;
+	width: 90%;
+	margin: auto;
+}
+
+
+.btn{
+	display: inline-block;
+	width: auto;
+	padding: 5px;
+	border: 1px solid black;
+	color: black;
+}
+.disabled{
+	color: #ccc;
+	border-color: #ccc;
+	pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+//========================
+// page
+//========================
+
+
+
+
+
+
+
+
+
+
