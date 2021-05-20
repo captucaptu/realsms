@@ -8,10 +8,19 @@
     <script src="js/jquery-3.5.1.min.js"></script>
   </head>
   <body>
-    <div class="wrap">
+    <div class="wrap withcode">
       <h2>疾管家實聯制工具</h2>
       <p>
-        您目前登記的場所代碼為：<span class="no"></span><br>若此欄無代碼請勿送出</p><a class="btn disabled" href="sms:1922">送出實聯制登記簡訊</a>
+        您目前登記的場所代碼為：<span class="no"></span><br>若此欄無代碼或代碼錯誤請勿送出</p><a class="btn disabled" href="sms:1922">送出實聯制登記簡訊</a>
+    </div>
+    <div class="wrap nocode" style="display: nonde;">
+      <h2>疾管家實聯制網址生成工具</h2>
+      <p>請輸入您欲使用的場所代碼<br>
+        <input id="scode" type="text">
+      </p>
+      <p>輸入場所代碼後，即可將下列網址用其他方式發送給需登記的訪客<br>
+        <input id="result" type="text" disabled>
+      </p>
     </div>
     <script>
       function getMobileOperatingSystem() { 
@@ -25,13 +34,25 @@
       } 
       $(document).ready(function(){
         var code = getParameterByName('code');
+        
+      
+        
         if(typeof code != 'undefined' && code != '' && String(code).length>0 && code != null){
+          $('.withcode').show();
+          $('.nocode').hide();
           $('span').text(code);
           var url = 'sms:1922?body=' + String(code);
           if(getMobileOperatingSystem() == 'iOS'){
             url = 'sms:1922&body=' + String(code);
           }
           $('a').removeClass('disabled').attr('href', url);
+        }else{
+          $('input#result').val('https://captucaptu.github.io/realsms/?code=');
+          $('.withcode').hide();
+          $('.nocode').show();
+          $('input#scode').on('change input', function(){
+            $('input#result').val('https://captucaptu.github.io/realsms/?code='+$(this).val());
+          });
         }
       });
       function getParameterByName(name, url = window.location.href) {
