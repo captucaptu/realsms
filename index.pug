@@ -44,7 +44,7 @@ block yield
         $('.withcode').hide();
         $('.nocode').show();
         $('input#scode').on('change input', function(){
-          $('input#result').val('https://captucaptu.github.io/realsms/?code='+$(this).val());
+          $('input#result').val('https://captucaptu.github.io/realsms/?code='+$(this).val().replace(/\s/g,''));
         });
       }
     });
