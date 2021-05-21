@@ -13,13 +13,17 @@
     <div class="wrap withcode">
       <h2>疾管家實聯制工具</h2>
       <p class="code-description">
-        場所代碼：<span class="no"></span><br>若此欄無代碼或代碼錯誤請勿送出</p>
+        <span class="place">場所名稱：<span class="place-name text-danger text-bold"></span><br></span>
+        場所代碼：<span class="no text-danger text-bold"></span><br>若此欄無代碼或代碼錯誤請勿送出</p>
         <div class="btn-wrapper text-center">
           <a class="btn btn-primary btn-lg disabled" href="sms:1922">點我送出</a>
         </div>
     </div>
     <div class="wrap nocode" style="display: nonde;">
       <h2>疾管家實聯制網址生成工具</h2>
+      <p>請輸入場所名稱，僅方便登記者確認不作為其他用途也不會包含於簡訊中<br>
+        <input id="place" type="text">
+      </p>
       <p>請輸入您欲使用的場所代碼<br>
         <input id="scode" type="text">
       </p>
@@ -39,13 +43,16 @@
       } 
       $(document).ready(function(){
         var code = getParameterByName('code');
-        
+        var place = getParameterByName('place');
       
         
         if(typeof code != 'undefined' && code != '' && String(code).length>0 && code != null){
           $('.withcode').show();
           $('.nocode').hide();
-          $('span').text(code);
+          console.log(place)
+          if(typeof place == 'undefined' || place == '' || place == null) $('span.place').hide();
+          $('span.place-name').text(place);
+          $('span.no').text(code);
           var url = 'sms:1922?body=' + String(code);
           if(getMobileOperatingSystem() == 'iOS'){
             url = 'sms:1922&body=' + String(code);
@@ -56,7 +63,7 @@
           $('.withcode').hide();
           $('.nocode').show();
           $('input#scode').on('change input', function(){
-            $('input#result').val('https://captucaptu.github.io/realsms/?code='+$(this).val().replace(/\s/g,''));
+            $('input#result').val('https://captucaptu.github.io/realsms/?code='+$(this).val().replace(/\s/g,'') + '&place='+ $('#place').val().replace(/\s/g,''));
           });
         }
       });

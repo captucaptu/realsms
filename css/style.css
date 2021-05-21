@@ -90,3 +90,6 @@ input {
 .code-description {
   font-size: 24px;
 }
+.text-bold{
+  font-weight: bold;
+}
