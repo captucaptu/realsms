@@ -78,12 +78,15 @@ input {
 .btn {
   display: inline-block;
   width: auto;
-  padding: 5px;
+  /*padding: 5px;*/
   border: 1px solid black;
-  color: black;
+  /*color: black;*/
 }
 .disabled {
   color: #ccc;
   border-color: #ccc;
   pointer-events: none;
+}
+.code-description {
+  font-size: 24px;
 }
